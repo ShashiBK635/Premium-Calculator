@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PremiumCalculator.Common;
 using PremiumCalculator.Models;
+using System;
 
 namespace PremiumCalculator.Controllers
 {
@@ -9,7 +10,7 @@ namespace PremiumCalculator.Controllers
         [Route("/")]
         public IActionResult Calculator()
         {
-            var model = new PremiumViewModel() { OccupationList = PremiumUtility.GetOccupations() };
+            var model = new PremiumViewModel() { OccupationList = PremiumUtility.GetOccupations(), DOB = DateTime.Now };
             return View(model);
         }
 
@@ -25,6 +26,11 @@ namespace PremiumCalculator.Controllers
 
             model.OccupationList = PremiumUtility.GetOccupations();
             return View(model);
+        }
+
+        public IActionResult Error()
+        {
+            return View();
         }
 
     }

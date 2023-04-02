@@ -1,23 +1,36 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(function () {
+    var $txtDOB = $('#txtDOB');
+    var $txtAge = $('#txtAge');
+    var $ddlOccupation = $('#ddlOccupation');
+    var $frmUpdateParty = $('#frmUpdateParty');
 
-// Write your JavaScript code.
-
-$(function () {
-    var txtDOB = $('#txtDOB');
-    var ddlOccupation = $('#ddlOccupation');
-    var frmUpdateParty = $('#frmUpdateParty');
-    txtDOB.datepicker({
-        format: "dd-mm-yyyy",
+    $txtDOB.datepicker({
+        format: "dd-M-yyyy",
         startView: 2,
         maxViewMode: 2,
         autoclose: true,
         endDate: "0d",
         startDate: "-70Y"
+    }).on("hide", function (e) {
+        $txtAge.val(calculateAge($txtDOB.datepicker('getDate')));
+        $txtAge.addClass('highlight');
+        setTimeout(
+            function () { $txtAge.removeClass('highlight'); },
+            2000
+        );
     });
 
-    ddlOccupation.change(function () {
-        //console.log("occupation changed: " + ddlOccupation.val());
-        frmUpdateParty.submit();
+    $ddlOccupation.change(function () {
+        $frmUpdateParty.submit();
     });
+
+    function calculateAge(dob) {
+        if (dob === null) {
+            return 0;
+        }
+        var today = new Date();
+        var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+        return age;
+    }
+
 });

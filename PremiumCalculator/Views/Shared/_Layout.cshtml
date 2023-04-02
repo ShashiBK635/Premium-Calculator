@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand">Premium-Calculator</a>
+                <a class="navbar-brand text-primary" asp-area="" asp-controller="Premium" asp-action="Calculator">Premium-Calculator</a>
             </div>
         </nav>
     </header>
@@ -22,7 +22,7 @@
         <main role="main" class="pb-3">
             <div class="container">
                 <div class="row">
-                    <div class="col pl-1">
+                    <div class="col px-4">
                         @RenderBody()
                     </div>
                 </div>

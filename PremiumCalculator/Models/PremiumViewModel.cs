@@ -20,6 +20,7 @@ namespace PremiumCalculator.Models
         [Required]
         [Range(1,int.MaxValue)]
         public int SumInsured { get; set; }
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double DeathPremium { get; set; }
         public double TPDPremiumMonthly { get; set; }
 

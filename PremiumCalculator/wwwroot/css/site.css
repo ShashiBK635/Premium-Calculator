@@ -83,3 +83,7 @@ body {
 body {
     background: #eee;
 }
+
+.highlight {
+    border: 3px solid #ffc107 !important;
+}
