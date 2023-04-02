@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using PremiumCalculator.Common;
 using PremiumCalculator.Models;
-using System.Collections.Generic;
 
 namespace PremiumCalculator.Controllers
 {
@@ -10,7 +9,21 @@ namespace PremiumCalculator.Controllers
         [Route("/")]
         public IActionResult Calculator()
         {
-            var model = new PremiumViewModel() { OccupationList = new List<SelectListItem>() };
+            var model = new PremiumViewModel() { OccupationList = PremiumUtility.GetOccupations() };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("/")]
+        public IActionResult Calculator(PremiumViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.DeathPremium = PremiumUtility.CalculateDeathPremium(model);
+                model.TPDPremiumMonthly = PremiumUtility.CalculateTPDPremiumMonthly(model);
+            }
+
+            model.OccupationList = PremiumUtility.GetOccupations();
             return View(model);
         }
 

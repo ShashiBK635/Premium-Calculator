@@ -3,49 +3,54 @@
     ViewData["Title"] = "Home";
 }
 
-    <div class="container-fluid">
-        @using (Html.BeginForm("Calculator", "Premium", FormMethod.Post, new { id = "frmUpdateParty" }))
-        {
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="txtName">Name</label>
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtName" })
-                    <span asp-validation-for="Name" style="color: red; font-size: 0.8rem;"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="txtDOB">Date of Birth</label>
-                    @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", id = "txtDOB", @type = "date" })
-                    <span asp-validation-for="DOB" style="color: red; font-size: 0.8rem;"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="txtAge">Age</label>
-                    @Html.TextBoxFor(m => m.Age, new { @class = "form-control", id = "txtAge", @type = "number" })
-                    <span asp-validation-for="Age" style="color: red; font-size: 0.8rem;"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="ddlOccupation">Occupation</label>
-                    @Html.DropDownListFor(m => m.Occupation, Model.OccupationList, new { @class = "form-control", id = "ddlOccupation" })
-                    <span asp-validation-for="Occupation" style="color: red; font-size: 0.8rem;"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="txtsumInsured">Sum Insured</label>
-                    @Html.TextBoxFor(m => m.SumInsured, new { @class = "form-control", id = "txtSumInsured", @type = "number" })
-                    <span asp-validation-for="SumInsured" style="color: red; font-size: 0.8rem;"></span>
-                </div>
-                <div class="col-sm-12 text-center">
-                    <button id="btnSave" type="submit" class="btn btn-primary">Calculate Premium</button>
-                </div>
+<div class="container-fluid">
+    @using (Html.BeginForm("Calculator", "Premium", FormMethod.Post, new { id = "frmUpdateParty" }))
+    {
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="txtName">Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtName" })
+                <span asp-validation-for="Name" style="color: red; font-size: 0.8rem;"></span>
             </div>
-        }
-        <div class="row mt-5 text-center">
-            <div class="col">
-                Death Premium: @Html.DisplayFor(m => m.DeathPremium)
+            <div class="form-group col-md-4">
+                <label for="txtDOB">Date of Birth</label>
+                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", id = "txtDOB" })
+                <span asp-validation-for="DOB" style="color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="txtAge">Age</label>
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control", id = "txtAge", @type = "number" })
+                <span asp-validation-for="Age" style="color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="ddlOccupation">Occupation</label>
+                @Html.DropDownListFor(m => m.Occupation, Model.OccupationList, new { @class = "form-control", id = "ddlOccupation" })
+                <span asp-validation-for="Occupation" style="color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="txtsumInsured">Sum Insured</label>
+                @Html.TextBoxFor(m => m.SumInsured, new { @class = "form-control", id = "txtSumInsured", @type = "number" })
+                <span asp-validation-for="SumInsured" style="color: red; font-size: 0.8rem;"></span>
+            </div>
+            <div class="col-sm-12 text-center">
+                <button id="btnSave" type="submit" class="btn btn-primary">Calculate Premium</button>
             </div>
         </div>
-        <div class="row mt-5 text-center">
-            <div class="col">
-                TPD Premium Monthly: @Html.DisplayFor(m => m.TPDPremiumMonthly)
-            </div>
+    }
+    <div class="row mt-5 text-center">
+        <div class="col">
+            Death Premium: @Html.DisplayFor(m => m.DeathPremium)
         </div>
     </div>
+    <div class="row mt-5 text-center">
+        <div class="col">
+            TPD Premium Monthly: @Html.DisplayFor(m => m.TPDPremiumMonthly)
+        </div>
+    </div>
+</div>
 
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/calculator.js" asp-append-version="true"></script>
+}
