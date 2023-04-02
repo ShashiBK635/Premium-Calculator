@@ -6,6 +6,7 @@
 
     $txtDOB.datepicker({
         format: "dd-M-yyyy",
+        defaultDate: new Date(),
         startView: 2,
         maxViewMode: 2,
         autoclose: true,

@@ -9,19 +9,27 @@ namespace PremiumCalculator.Models
     {
         [Required]
         public string Name { get; set; }
+
         [Required]
         public int Age { get; set; }
+
         [Required]
-        public DateTime DOB { get; set; }
+        public string DOB { get; set; }
+
         public List<SelectListItem> OccupationList { get; set; }
+
         [Required]
         [MinLength(1)]
         public string Occupation { get; set; }
+
         [Required]
         [Range(1,int.MaxValue)]
         public int SumInsured { get; set; }
+
         [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double DeathPremium { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double TPDPremiumMonthly { get; set; }
 
     }

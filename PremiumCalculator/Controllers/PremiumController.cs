@@ -10,7 +10,7 @@ namespace PremiumCalculator.Controllers
         [Route("/")]
         public IActionResult Calculator()
         {
-            var model = new PremiumViewModel() { OccupationList = PremiumUtility.GetOccupations(), DOB = DateTime.Now };
+            var model = new PremiumViewModel() { OccupationList = PremiumUtility.GetOccupations() };
             return View(model);
         }
 
@@ -22,6 +22,11 @@ namespace PremiumCalculator.Controllers
             {
                 model.DeathPremium = PremiumUtility.CalculateDeathPremium(model);
                 model.TPDPremiumMonthly = PremiumUtility.CalculateTPDPremiumMonthly(model);
+            }
+            else
+            {
+                model.DeathPremium = 0;
+                model.TPDPremiumMonthly = 0;
             }
 
             model.OccupationList = PremiumUtility.GetOccupations();

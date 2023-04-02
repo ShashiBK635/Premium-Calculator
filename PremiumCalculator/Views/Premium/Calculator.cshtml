@@ -6,56 +6,69 @@
     <div class="container-fluid">
         @using (Html.BeginForm("Calculator", "Premium", FormMethod.Post, new { id = "frmUpdateParty" }))
         {
-        <div class="row py-3">
-            <div class="form-group col-md-6">
-                <label for="txtName">Name</label>
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtName" })
-                <span asp-validation-for="Name" style="color: red; font-size: 0.8rem;"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="txtDOB">Date of Birth</label>
-                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", id = "txtDOB", autocomplete = "off" })
-                <span asp-validation-for="DOB" style="color: red; font-size: 0.8rem;"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="txtAge">Age</label>
-                <div class="input-group mb-2">
-                    @Html.TextBoxFor(m => m.Age, new { @class = "form-control", id = "txtAge", @type = "number", @readonly = "readonly" })
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">Years</div>
+            <div class="row my-3">
+                <div class="form-group col-md-6">
+                    <label for="txtName">Name</label>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "txtName" })
+                    <span asp-validation-for="Name" style="color: red; font-size: 0.8rem;"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="txtDOB">Date of Birth</label>
+                    @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", id = "txtDOB", autocomplete = "off" })
+                    <span asp-validation-for="DOB" style="color: red; font-size: 0.8rem;"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="txtAge">Age</label>
+                    <div class="input-group mb-2">
+                        @Html.TextBoxFor(m => m.Age, new { @class = "form-control", id = "txtAge", @type = "number", @readonly = "readonly" })
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Years</div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Age" style="color: red; font-size: 0.8rem;"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="ddlOccupation">Occupation</label>
+                    @Html.DropDownListFor(m => m.Occupation, Model.OccupationList, new { @class = "form-control", id = "ddlOccupation" })
+                    <span asp-validation-for="Occupation" style="color: red; font-size: 0.8rem;"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="txtsumInsured">Sum Insured</label>
+                    <div class="input-group mb-2">
+                        @Html.TextBoxFor(m => m.SumInsured, new { @class = "form-control", id = "txtSumInsured", @type = "number" })
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">AUD</div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="SumInsured" style="color: red; font-size: 0.8rem;"></span>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-4 ">
+                            <button id="btnSave" type="submit" class="btn btn-primary btn-block my-4" >Calculate Premium</button>
+                        </div>
                     </div>
                 </div>
-                <span asp-validation-for="Age" style="color: red; font-size: 0.8rem;"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="ddlOccupation">Occupation</label>
-                @Html.DropDownListFor(m => m.Occupation, Model.OccupationList, new { @class = "form-control", id = "ddlOccupation" })
-                <span asp-validation-for="Occupation" style="color: red; font-size: 0.8rem;"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="txtsumInsured">Sum Insured</label>
-                <div class="input-group mb-2">
-                    @Html.TextBoxFor(m => m.SumInsured, new { @class = "form-control", id = "txtSumInsured", @type = "number" })
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">AUD</div>
-                    </div>
-                </div>
-                <span asp-validation-for="SumInsured" style="color: red; font-size: 0.8rem;"></span>
-            </div>
-            <div class="col-sm-12 text-center">
-                <button id="btnSave" type="submit" class="btn btn-primary btn-block my-4">Calculate Premium</button>
-            </div>
 
-        </div>
+            </div>
         }
-        <div class="row py-4 font-weight-bold text-center justify-content-md-center">
-            <div class="col-md-6 p-2">
-                Death Premium: <span class="text-primary font-weight-bold"> @Html.DisplayFor(m => m.DeathPremium)  AUD</span>
+        <div class="row my-3 py-3">
+            <div class="col-lg-6">
+                <div class="card text-center shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title">Death Premium: <span class="text-primary font-weight-bold text-nowrap"> @Html.DisplayFor(m => m.DeathPremium)  AUD</span></h5>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 p-2">
-                TPD Premium Monthly: <span class="text-primary font-weight-bold"> @Html.DisplayFor(m => m.TPDPremiumMonthly)  AUD</span>
+            <div class="col-lg-6">
+                <div class="card text-center shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title">TPD Premium Monthly: <span class="text-primary font-weight-bold text-nowrap"> @Html.DisplayFor(m => m.TPDPremiumMonthly)  AUD</span></h5>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
 
 @section Scripts
